@@ -449,6 +449,12 @@ a:focus {
 	width: 774px;
 }
 
+.bouton-paypal {
+margin: 45px auto 45px auto;
+width: 100%;
+text-align: center:	
+}
+
 /********** 1.2.1 Navbar Style - Start **********/
 .navbar-laread {
 	background-color: #3d3d3f;
