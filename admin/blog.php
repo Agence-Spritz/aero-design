@@ -31,7 +31,7 @@ $masquer_rubrique = 0;
 
 // CHAMPS
 // A personnaliser si la table que l'on interroge a des champs différents, ou si on veut en ajouter.
-$chps=array('page','titre','texte','dbu','masquer','lg', 'texte2', 'rub', 'texte3');
+$chps=array('page','titre','texte','dbu','masquer','lg', 'texte2', 'rub', 'texte3', 'bouton_paypal');
 $chpsNb = count($chps);
  
 ?>
@@ -86,7 +86,7 @@ if ( $Submit )
     }
     
     // Si on a ajouté des champs, il faudra les ajouter ici aussi !
-	unset($ID,$page,$titre,$texte,$dbu,$masquer,$lg, $texte2,$rub, $texte3);
+	unset($ID,$page,$titre,$texte,$dbu,$masquer,$lg, $texte2,$rub, $texte3, $bouton_paypal);
 
 	// ENVOYER LES PHOTOS
 	$nom_tmp = $_FILES['vignette']['tmp_name']; sent_photo($updatevign,$nom_tmp,$chemin); 
@@ -118,7 +118,7 @@ if ( $modif )
 
 	// Si on a ajouté des champs, il faudra les ajouter ici aussi !
 	
-	list($ID,$page,$titre,$texte,$dbu,$masquer,$lg, $texte2,$rub,$texte3) = $result;
+	list($ID,$page,$titre,$texte,$dbu,$masquer,$lg, $texte2,$rub,$texte3, $bouton_paypal) = $result;
 	$$chps[3]=date_barre($$chps[3]);
 }  
 ?>
@@ -191,7 +191,7 @@ if ( $modif )
 							        <div class="form-group">
 								        <input name="<?=$chps[6]?>" value="<?=$$chps[6]?>" class="form-control" type="text" required  />
 							        </div>
-	      
+							        
 									<h4><i class='fa fa-calendar '></i> Date de publication</h4>
 							        <div class="form-group">
 								    	<input name="<?=$chps[3]?>" value="<?=($$chps[3])?($$chps[3]):(date("d/m/Y"))?>" class="form-control" type="text" required size="30" />
@@ -203,6 +203,11 @@ if ( $modif )
 							            <option value="0"<?php if ( $$chps[4]=="0" ) { print(" selected"); } ?>>Non</option>
 							            <option value="1"<?php if ( $$chps[4]=="1" ) { print(" selected"); } ?>>Oui</option>
 							          </select>
+							        </div>
+							        
+							        <h4 style="margin-top: 45px;"><i class='fa fa-pencil-square-o '></i> Code bouton Paypal (optionnel)</h4>
+							        <div  class="form-group">
+								        <textarea name="<?=$chps[9]?>" row contenu-admins="10" cols="50" ><?=$$chps[9]?></textarea><script type="text/javascript"><?=$chps[8]?></script>
 							        </div>
 							</div>
 
@@ -303,7 +308,7 @@ if ( $modif )
 				      	</thead>
 						<tbody>
 						  <?php 
-						  while ( list($ID,$page,$titre,$texte,$dbu,$masquer,$lg, $texte2,$rub, $texte3) = mysqli_fetch_array($result) ) 
+						  while ( list($ID,$page,$titre,$texte,$dbu,$masquer,$lg, $texte2,$rub, $texte3, $bouton_paypal) = mysqli_fetch_array($result) ) 
 						  { 
 						  	if ($masquer=="1") {$class="normalgrisclair";} else {$class="";}
 						    echo "<tr class='".$class."'>";
