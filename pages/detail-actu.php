@@ -1,5 +1,5 @@
 <?php	// Requête pour récupérer le contenu de la page concernée
-		list($titrep, $date, $rub, $textep, $texte2p, $texte3p) = mysqli_fetch_array(mysqli_query($link, "SELECT titre, dbu, rub, texte, texte2, texte3 FROM ".$table_prefix."_pages WHERE page='actu' AND ID='$id' "));		
+		list($titrep, $date, $rub, $textep, $texte2p, $texte3p, $bouton_paypal) = mysqli_fetch_array(mysqli_query($link, "SELECT titre, dbu, rub, texte, texte2, texte3, bouton_paypal FROM ".$table_prefix."_pages WHERE page='actu' AND ID='$id' "));		
 ?>
 	
 	<section class="post-fluid detail-blog">
@@ -22,6 +22,9 @@
 							
 							<div class="col-md-8 ">
 								<p><?php echo $textep; ?></p>
+								<div class="bouton-paypal">
+									<?php echo $bouton_paypal; ?>
+								</div>
 							</div>
 							<div class="clearfix"></div>
 						
@@ -51,6 +54,8 @@
 								<div class="pull-right">
 									<span style='color: #000;'>Rubrique :</span> <a href="rubrique-aero-design--206--page-blog?rub=<?php echo $rub; ?>"><?php echo $rub; ?></a>
 								</div>
+
+
 							</div>
 							
 							
